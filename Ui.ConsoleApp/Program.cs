@@ -210,7 +210,11 @@
             }
             var list = AppUtil.MapCommandArguments(args, appInfo);
             var dirName = list.First(a => a.Abbreviation == "f").GivenValue;
-            var simulate = bool.Parse(list.First(a => a.Abbreviation == "s").GivenValue);
+            var simulate = false;
+            if (list.Any(a => a.Abbreviation == "s"))
+            {
+                simulate = bool.Parse(list.First(a => a.Abbreviation == "s").GivenValue);
+            }
             if (simulate)
             {
                 ConsoleUtil.WriteLine("!!! SIMULATION MODE !!!", ConsoleColor.Green);                
